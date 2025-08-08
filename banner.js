@@ -29,7 +29,7 @@ function displayHelloFile() {
     try {
         const content = fs.readFileSync('hello.txt', 'utf8');
         console.log('\n' + '='.repeat(60));
-        console.log(chalk.brightYellow('📄 CONTENTS OF HELLO.TXT:'));
+        console.log(chalk.yellow.bold('📄 CONTENTS OF HELLO.TXT:'));
         console.log('='.repeat(60));
         console.log(content);
         console.log('='.repeat(60));
