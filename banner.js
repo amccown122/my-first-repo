@@ -1,27 +1,22 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-// ASCII art for "MY FIRST REPO"
-const banner = `
-███╗   ███╗██╗   ██╗    ███████╗██╗██████╗ ███████╗████████╗    ██████╗ ███████╗██████╗  ██████╗ 
-████╗ ████║╚██╗ ██╔╝    ██╔════╝██║██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔══██╗██╔═══██╗
-██╔████╔██║ ╚████╔╝     █████╗  ██║██████╔╝███████╗   ██║       ██████╔╝█████╗  ██████╔╝██║   ██║
-██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██║██╔══██╗╚════██║   ██║       ██╔═══╝ ██╔══╝  ██╔═══╝ ██║   ██║
-██║ ╚═╝ ██║   ██║       ██║     ██║██║  ██║███████║   ██║       ██║     ███████╗██║     ╚██████╔╝
-╚═╝     ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝     ╚══════╝╚═╝      ╚═════╝ 
-`;
-
 // Function to create rainbow colored ASCII art
 function createRainbowBanner() {
     const colors = [chalk.red, chalk.yellow, chalk.green, chalk.cyan, chalk.blue, chalk.magenta];
-    const lines = banner.trim().split('\n');
     let colorIndex = 0;
     
-    return lines.map(line => {
-        const color = colors[colorIndex % colors.length];
-        colorIndex++;
-        return color(line);
-    }).join('\n');
+    // Create each line with proper color
+    const lines = [
+        chalk.red('███╗   ███╗██╗   ██╗    ███████╗██╗██████╗ ███████╗████████╗    ██████╗ ███████╗██████╗  ██████╗'),
+        chalk.yellow('████╗ ████║╚██╗ ██╔╝    ██╔════╝██║██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔══██╗██╔═══██╗'),
+        chalk.green('██╔████╔██║ ╚████╔╝     █████╗  ██║██████╔╝███████╗   ██║       ██████╔╝█████╗  ██████╔╝██║   ██║'),
+        chalk.cyan('██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██║██╔══██╗╚════██║   ██║       ██╔═══╝ ██╔══╝  ██╔═══╝ ██║   ██║'),
+        chalk.blue('██║ ╚═╝ ██║   ██║       ██║     ██║██║  ██║███████║   ██║       ██║     ███████╗██║     ╚██████╔╝'),
+        chalk.magenta('╚═╝     ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝     ╚══════╝╚═╝      ╚═════╝')
+    ];
+    
+    return lines.join('\n');
 }
 
 // Function to read and display hello.txt
