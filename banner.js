@@ -6,17 +6,33 @@ function createRainbowBanner() {
     const colors = [chalk.red, chalk.yellow, chalk.green, chalk.cyan, chalk.blue, chalk.magenta];
     let colorIndex = 0;
     
-    // Create each line with proper color
-    const lines = [
-        chalk.red('███╗   ███╗██╗   ██╗    ███████╗██╗██████╗ ███████╗████████╗    ██████╗ ███████╗██████╗  ██████╗'),
-        chalk.yellow('████╗ ████║╚██╗ ██╔╝    ██╔════╝██║██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔══██╗██╔═══██╗'),
-        chalk.green('██╔████╔██║ ╚████╔╝     █████╗  ██║██████╔╝███████╗   ██║       ██████╔╝█████╗  ██████╔╝██║   ██║'),
-        chalk.cyan('██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██║██╔══██╗╚════██║   ██║       ██╔═══╝ ██╔══╝  ██╔═══╝ ██║   ██║'),
-        chalk.blue('██║ ╚═╝ ██║   ██║       ██║     ██║██║  ██║███████║   ██║       ██║     ███████╗██║     ╚██████╔╝'),
-        chalk.magenta('╚═╝     ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝     ╚══════╝╚═╝      ╚═════╝')
+    // ASCII art text
+    const bannerText = [
+        '███╗   ███╗██╗   ██╗    ███████╗██╗██████╗ ███████╗████████╗    ██████╗ ███████╗██████╗  ██████╗',
+        '████╗ ████║╚██╗ ██╔╝    ██╔════╝██║██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔══██╗██╔═══██╗',
+        '██╔████╔██║ ╚████╔╝     █████╗  ██║██████╔╝███████╗   ██║       ██████╔╝█████╗  ██████╔╝██║   ██║',
+        '██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██║██╔══██╗╚════██║   ██║       ██╔═══╝ ██╔══╝  ██╔═══╝ ██║   ██║',
+        '██║ ╚═╝ ██║   ██║       ██║     ██║██║  ██║███████║   ██║       ██║     ███████╗██║     ╚██████╔╝',
+        '╚═╝     ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝     ╚══════╝╚═╝      ╚═════╝'
     ];
     
-    return lines.join('\n');
+    // Apply rainbow colors character by character
+    const coloredLines = bannerText.map(line => {
+        let coloredLine = '';
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char !== ' ') {  // Only color non-space characters
+                const color = colors[colorIndex % colors.length];
+                coloredLine += color(char);
+                colorIndex++;
+            } else {
+                coloredLine += char;
+            }
+        }
+        return coloredLine;
+    });
+    
+    return coloredLines.join('\n');
 }
 
 // Function to read and display hello.txt
